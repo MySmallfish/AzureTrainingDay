@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2013-03.2.0">
+  <Role name="Services">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=e4dazureday;AccountKey=E5hIFs+qT2gpv8LcTejFVmgt4ZR5nKZfhqxe+aiGtexRgLZ5De1TiwEVPIPJv9gxB5wk/td39tgoNixvwtM4eg==" />
+      <Setting name="RepositoryUrl" value="http://127.0.0.1:81/ContactRepository.svc" />
+      <Setting name="ServiceBusConnectionString" value="Endpoint=sb://e4d-demo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hxtqvA5kyzKFin0MPGzpLqg8YqsLe5oBEfGfcDiVIro=" />
+      <Setting name="NewContactsTopic" value="new-contacts" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="yair" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDYsVc0FLWqxRMZ7RvJjWGEwDQYJKoZIhvcNAQEBBQAEggEAoz32RK4QUiyeI97vdi615liVmT4oHg9gqIzzvXlFb54KZXe4HK8cVgbcH/VWuESG2cWj529a4xZw16rq7Y2hDd8hmtiXU3eIr93GNe+cQGpNmdF71QTMzpZCAJEmjkIT7Vhv2OPJa651YbP97obK5xpuZSPYLZ26UGbG2almI8Z6MLIGJUI9jbcjcNeZ8YwsV63Vczra70jbNaad5PdAyvXUAYTkXOkPRfjJF0aoyfQDbC1fZ7upJF0Q5GznIvIBvlcwA5/9Z56CRQ02xnbj5b2mlYraiCP7qFRYdgvdAl4tMH48RwxrKUiipW4tCi37JXRyf4x8DNjvMzH81G6JqjAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECF6mZ5x48JVZgBB6jaIV3Ea0aBs5DluUe1tX" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2015-04-24T23:59:59.0000000+03:00" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="C2D6027B4227D403036F8562E551058BDB137095" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+  <Role name="ImagesProcessor">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=e4dazureday;AccountKey=E5hIFs+qT2gpv8LcTejFVmgt4ZR5nKZfhqxe+aiGtexRgLZ5De1TiwEVPIPJv9gxB5wk/td39tgoNixvwtM4eg==" />
+      <Setting name="ServiceBusConnectionString" value="Endpoint=sb://e4d-demo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hxtqvA5kyzKFin0MPGzpLqg8YqsLe5oBEfGfcDiVIro=" />
+      <Setting name="ImagesQueueName" value="images" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="yair" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDYsVc0FLWqxRMZ7RvJjWGEwDQYJKoZIhvcNAQEBBQAEggEAoz32RK4QUiyeI97vdi615liVmT4oHg9gqIzzvXlFb54KZXe4HK8cVgbcH/VWuESG2cWj529a4xZw16rq7Y2hDd8hmtiXU3eIr93GNe+cQGpNmdF71QTMzpZCAJEmjkIT7Vhv2OPJa651YbP97obK5xpuZSPYLZ26UGbG2almI8Z6MLIGJUI9jbcjcNeZ8YwsV63Vczra70jbNaad5PdAyvXUAYTkXOkPRfjJF0aoyfQDbC1fZ7upJF0Q5GznIvIBvlcwA5/9Z56CRQ02xnbj5b2mlYraiCP7qFRYdgvdAl4tMH48RwxrKUiipW4tCi37JXRyf4x8DNjvMzH81G6JqjAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECF6mZ5x48JVZgBB6jaIV3Ea0aBs5DluUe1tX" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2015-04-24T23:59:59.0000000+03:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="C2D6027B4227D403036F8562E551058BDB137095" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>
