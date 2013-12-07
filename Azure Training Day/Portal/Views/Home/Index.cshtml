@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="contacts" ng-app="Contacts" ng-controller="MainCtrl">
+    <h1>Contacts</h1>
+    <ul>
+        <li ng-repeat="contact in contacts track by contact.UniqueId">
+            <div>
+                <h3>{{contact.Name}}</h3>
+                <i>{{contact.Email}}</i>
+            </div>
+            <div>
+                <img ng-show="contact.Thumbnail" ng-src="{{contact.Thumbnail}}" width="150" height="100" />
+            </div>
+        </li>
+    </ul>
+</div>

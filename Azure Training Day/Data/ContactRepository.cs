@@ -55,7 +55,9 @@ namespace Data
                     Name = c.Name,
                     Age = c.Age.GetValueOrDefault(),
                     Email = c.Email,
-                    UniqueId = c.UniqueId
+                    UniqueId = c.UniqueId,
+                    Picture = c.Picture,
+                    Thumbnail = c.Thumbnail
                 }));
             }
 

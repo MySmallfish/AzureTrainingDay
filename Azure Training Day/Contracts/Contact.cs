@@ -21,5 +21,10 @@ namespace Contracts
         [DataMember]
         public int Age { get; set; }
 
+        [DataMember]
+        public string Picture { get; set; }
+
+        [DataMember]
+        public string Thumbnail { get; set; }
     }
 }
