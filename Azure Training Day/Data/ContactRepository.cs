@@ -11,6 +11,22 @@ namespace Data
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class ContactRepository : IContactRepository
     {
+        public void UpdatePicture(string uniqueId, string url)
+        {
+            using (var dataContext = new ContactsDataContext())
+            {
+                var contact = dataContext.Contacts.SingleOrDefault(c => c.UniqueId == uniqueId);
+                if (contact == null)
+                {
+                    throw new ArgumentException("Contact with uniqueid " + uniqueId + " not found.");
+                }
+
+                contact.Picture = url;
+
+                dataContext.SubmitChanges();
+            }
+        }
+
         public void Add(Contracts.Contact contact)
         {
             using (var dataContext = new ContactsDataContext())
@@ -19,7 +35,8 @@ namespace Data
                 {
                     Name = contact.Name,
                     Email = contact.Email,
-                    Age = contact.Age
+                    Age = contact.Age,
+                    UniqueId = contact.UniqueId
                 });
 
                 dataContext.SubmitChanges();
@@ -37,11 +54,29 @@ namespace Data
                     Id = c.Id,
                     Name = c.Name,
                     Age = c.Age.GetValueOrDefault(),
-                    Email = c.Email
+                    Email = c.Email,
+                    UniqueId = c.UniqueId
                 }));
             }
 
             return result.ToArray();
+        }
+
+
+        public void UpdateThumbnail(string uniqueId, string url)
+        {
+            using (var dataContext = new ContactsDataContext())
+            {
+                var contact = dataContext.Contacts.SingleOrDefault(c => c.UniqueId == uniqueId);
+                if (contact == null)
+                {
+                    throw new ArgumentException("Contact with uniqueid " + uniqueId + " not found.");
+                }
+
+                contact.Thumbnail = url;
+
+                dataContext.SubmitChanges();
+            }            
         }
     }
 }

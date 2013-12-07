@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using Contracts;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace SQLAzure
 {
@@ -28,8 +31,8 @@ namespace SQLAzure
         private void Subscribe()
         {
 
-            string connectionString =
-    CloudConfigurationManager.GetSetting("ServiceBusConnectionString");
+            var connectionString =
+                CloudConfigurationManager.GetSetting("ServiceBusConnectionString");
 
             var namespaceManager =
                 NamespaceManager.CreateFromConnectionString(connectionString);
@@ -59,10 +62,45 @@ namespace SQLAzure
 
         }
 
+        private async Task UploadImage(string path, string url, string sasToken)
+        {
+            var blobUri = new Uri(url);
+
+            // Create credentials with the SAS token. The SAS token was created in previous example.
+            var credentials = new StorageCredentials(sasToken);
+
+            // Create a new blob.
+            var blob = new CloudBlockBlob(blobUri, credentials);
+
+            // Upload the blob. 
+            // If the blob does not yet exist, it will be created. 
+            // If the blob does exist, its existing content will be overwritten.
+            using (var fileStream = System.IO.File.OpenRead(path))
+            {
+                await Task.Run(() =>
+                {
+                    blob.UploadFromStream(fileStream);
+                });
+            }        
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            var client = new ContactsManagerClient(AddressText.Text);
-            client.AddContact(NameText.Text, Email.Text, (int)Age.Value);
+            var uniqueId = Guid.NewGuid().ToString();
+            var contactsClient = new ContactsManagerClient(AddressText.Text);
+            contactsClient.AddContact(uniqueId, NameText.Text, Email.Text, (int)Age.Value);
+
+            var path = openFileDialog1.FileName;
+            var fileName = Path.GetFileNameWithoutExtension(path);
+            fileName = fileName + "-" + uniqueId + Path.GetExtension(path);
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                var info = contactsClient.GetImagesUploadUrl();
+                var url = info.Url + "/" + fileName;
+                UploadImage(path, url, info.SharedAccessToken)
+                    .ContinueWith(t => contactsClient.AssignPicture(uniqueId, url));
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -74,6 +112,29 @@ namespace SQLAzure
         {
             var client = new ContactsManagerClient(AddressText.Text);
             Contacts.DataSource = client.GetContacts();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddressText.Text = "http://127.0.0.1:81/ContactsManager.svc";
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AddressText.Text = "http://e4d-azure-day.cloudapp.net/ContactsManager.svc";
+        }
+        
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            var path = openFileDialog1.FileName;
+            pictureBox1.Image = Image.FromFile(path);
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
         }
     }
 }

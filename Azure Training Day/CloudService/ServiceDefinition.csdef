@@ -17,8 +17,11 @@
     </Imports>
     <ConfigurationSettings>
       <Setting name="RepositoryUrl" />
+      <Setting name="StorageEngineUrl" />
       <Setting name="ServiceBusConnectionString" />
       <Setting name="NewContactsTopic" />
+      <Setting name="ImagesQueueName" />
+      <Setting name="StorageConnectionString" />
     </ConfigurationSettings>
   </WebRole>
   <WorkerRole name="ImagesProcessor" vmsize="Small">
@@ -30,6 +33,11 @@
     <ConfigurationSettings>
       <Setting name="ServiceBusConnectionString" />
       <Setting name="ImagesQueueName" />
+      <Setting name="StorageConnectionString" />
+      <Setting name="ContactsManagerUrl" />
     </ConfigurationSettings>
+    <LocalResources>
+      <LocalStorage name="Images" sizeInMB="500" />
+    </LocalResources>
   </WorkerRole>
 </ServiceDefinition>

@@ -22,7 +22,7 @@ namespace Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AzureDemoContacts")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="contacts")]
 	public partial class ContactsDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace Data
     #endregion
 		
 		public ContactsDataContext() : 
-				base(global::Data.Properties.Settings.Default.AzureDemoContactsConnectionString, mappingSource)
+				base(global::Data.Properties.Settings.Default.contactsConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -88,6 +88,12 @@ namespace Data
 		
 		private System.Nullable<int> _Age;
 		
+		private string _UniqueId;
+		
+		private string _Picture;
+		
+		private string _Thumbnail;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -100,6 +106,12 @@ namespace Data
     partial void OnEmailChanged();
     partial void OnAgeChanging(System.Nullable<int> value);
     partial void OnAgeChanged();
+    partial void OnUniqueIdChanging(string value);
+    partial void OnUniqueIdChanged();
+    partial void OnPictureChanging(string value);
+    partial void OnPictureChanged();
+    partial void OnThumbnailChanging(string value);
+    partial void OnThumbnailChanged();
     #endregion
 		
 		public Contact()
@@ -183,6 +195,66 @@ namespace Data
 					this._Age = value;
 					this.SendPropertyChanged("Age");
 					this.OnAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UniqueId", DbType="NVarChar(200)")]
+		public string UniqueId
+		{
+			get
+			{
+				return this._UniqueId;
+			}
+			set
+			{
+				if ((this._UniqueId != value))
+				{
+					this.OnUniqueIdChanging(value);
+					this.SendPropertyChanging();
+					this._UniqueId = value;
+					this.SendPropertyChanged("UniqueId");
+					this.OnUniqueIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="NVarChar(400)")]
+		public string Picture
+		{
+			get
+			{
+				return this._Picture;
+			}
+			set
+			{
+				if ((this._Picture != value))
+				{
+					this.OnPictureChanging(value);
+					this.SendPropertyChanging();
+					this._Picture = value;
+					this.SendPropertyChanged("Picture");
+					this.OnPictureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thumbnail", DbType="NVarChar(400)")]
+		public string Thumbnail
+		{
+			get
+			{
+				return this._Thumbnail;
+			}
+			set
+			{
+				if ((this._Thumbnail != value))
+				{
+					this.OnThumbnailChanging(value);
+					this.SendPropertyChanging();
+					this._Thumbnail = value;
+					this.SendPropertyChanged("Thumbnail");
+					this.OnThumbnailChanged();
 				}
 			}
 		}

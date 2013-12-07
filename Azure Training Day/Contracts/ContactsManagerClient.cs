@@ -17,14 +17,32 @@ namespace Contracts
         {
             
         }
-        public void AddContact(string name, string email, int age)
+        public void AddContact(string uniqueId, string name, string email, int age)
         {
-            Channel.AddContact(name, email, age);
+            Channel.AddContact(uniqueId, name, email, age);
         }
+
 
         public Contact[] GetContacts()
         {
             return Channel.GetContacts();
+        }
+
+
+        public StorageInfo GetImagesUploadUrl()
+        {
+            return Channel.GetImagesUploadUrl();
+        }
+
+        public void AssignPicture(string contactUniqueId, string url)
+        {
+            Channel.AssignPicture(contactUniqueId, url);
+        }
+
+
+        public void AssignThumbnail(string uniqueId, string uri)
+        {
+            Channel.AssignThumbnail(uniqueId, uri);
         }
     }
 }

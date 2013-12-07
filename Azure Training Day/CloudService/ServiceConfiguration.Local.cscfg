@@ -5,8 +5,12 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="RepositoryUrl" value="http://127.0.0.1:81/ContactRepository.svc" />
+      <Setting name="StorageEngineUrl" value="http://127.0.0.1:81/StorageEngine.svc" />
       <Setting name="ServiceBusConnectionString" value="Endpoint=sb://e4d-demo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hxtqvA5kyzKFin0MPGzpLqg8YqsLe5oBEfGfcDiVIro=" />
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=e4dazureday;AccountKey=E5hIFs+qT2gpv8LcTejFVmgt4ZR5nKZfhqxe+aiGtexRgLZ5De1TiwEVPIPJv9gxB5wk/td39tgoNixvwtM4eg==" />
+      <!--<Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />-->
       <Setting name="NewContactsTopic" value="new-contacts-debug" />
+      <Setting name="ImagesQueueName" value="images-debug" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="yair" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDYsVc0FLWqxRMZ7RvJjWGEwDQYJKoZIhvcNAQEBBQAEggEAoz32RK4QUiyeI97vdi615liVmT4oHg9gqIzzvXlFb54KZXe4HK8cVgbcH/VWuESG2cWj529a4xZw16rq7Y2hDd8hmtiXU3eIr93GNe+cQGpNmdF71QTMzpZCAJEmjkIT7Vhv2OPJa651YbP97obK5xpuZSPYLZ26UGbG2almI8Z6MLIGJUI9jbcjcNeZ8YwsV63Vczra70jbNaad5PdAyvXUAYTkXOkPRfjJF0aoyfQDbC1fZ7upJF0Q5GznIvIBvlcwA5/9Z56CRQ02xnbj5b2mlYraiCP7qFRYdgvdAl4tMH48RwxrKUiipW4tCi37JXRyf4x8DNjvMzH81G6JqjAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECF6mZ5x48JVZgBB6jaIV3Ea0aBs5DluUe1tX" />
@@ -22,6 +26,9 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="ServiceBusConnectionString" value="Endpoint=sb://e4d-demo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hxtqvA5kyzKFin0MPGzpLqg8YqsLe5oBEfGfcDiVIro=" />
       <Setting name="ImagesQueueName" value="images-debug" />
+      <Setting name="ContactsManagerUrl" value="http://127.0.0.1:81/ContactsManager.svc" />
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=e4dazureday;AccountKey=E5hIFs+qT2gpv8LcTejFVmgt4ZR5nKZfhqxe+aiGtexRgLZ5De1TiwEVPIPJv9gxB5wk/td39tgoNixvwtM4eg==" />
+      <!--<Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />-->
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="yair" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDYsVc0FLWqxRMZ7RvJjWGEwDQYJKoZIhvcNAQEBBQAEggEAoz32RK4QUiyeI97vdi615liVmT4oHg9gqIzzvXlFb54KZXe4HK8cVgbcH/VWuESG2cWj529a4xZw16rq7Y2hDd8hmtiXU3eIr93GNe+cQGpNmdF71QTMzpZCAJEmjkIT7Vhv2OPJa651YbP97obK5xpuZSPYLZ26UGbG2almI8Z6MLIGJUI9jbcjcNeZ8YwsV63Vczra70jbNaad5PdAyvXUAYTkXOkPRfjJF0aoyfQDbC1fZ7upJF0Q5GznIvIBvlcwA5/9Z56CRQ02xnbj5b2mlYraiCP7qFRYdgvdAl4tMH48RwxrKUiipW4tCi37JXRyf4x8DNjvMzH81G6JqjAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECF6mZ5x48JVZgBB6jaIV3Ea0aBs5DluUe1tX" />

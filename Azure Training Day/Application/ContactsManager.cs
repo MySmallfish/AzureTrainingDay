@@ -22,14 +22,32 @@ namespace Application
             return client;
         }
 
-        public void AddContact(string name, string email, int age)
+        private IStorageEngine CreateStorageEngineClient()
+        {
+            var client = new StorageEngineClient(RoleEnvironment.IsAvailable ? RoleEnvironment.GetConfigurationSettingValue("StorageEngineUrl") : ConfigurationManager.AppSettings["StorageEngineUrl"]);
+            return client;
+        }
+
+        public StorageInfo GetImagesUploadUrl()
+        {
+            var client = CreateStorageEngineClient();
+            var url = "https://e4dazureday.blob.core.windows.net/images";
+            return new StorageInfo()
+            {
+                Url = url,
+                SharedAccessToken = client.CreateSharedAccessUrl("images", "upload")
+            };
+        }
+
+        public void AddContact(string uniqueId, string name, string email, int age)
         {
             var repository = GetRepository();
             var contact = new Contact()
             {
                 Name = name,
                 Email = email,
-                Age = age
+                Age = age,
+                UniqueId = uniqueId
             };
             repository.Add(contact);
 
@@ -38,19 +56,51 @@ namespace Application
 
         private void NotifyContactAdded(Contact contact)
         {
-            var connectionString =
-                CloudConfigurationManager.GetSetting("ServiceBusConnectionString");
+            Notify("NewContactsTopic", contact);
+        }
+
+        private void Notify(string topic, object info)
+        {
+            var connectionString = GetServiceBusConnectionString();
 
             var client =
-                    TopicClient.CreateFromConnectionString(connectionString, CloudConfigurationManager.GetSetting("NewContactsTopic"));
+                TopicClient.CreateFromConnectionString(connectionString,
+                    CloudConfigurationManager.GetSetting(topic));
 
-            client.Send(new BrokeredMessage(contact));
+            client.Send(new BrokeredMessage(info));
+        }
+
+        private static string GetServiceBusConnectionString()
+        {
+            var connectionString =
+                CloudConfigurationManager.GetSetting("ServiceBusConnectionString");
+            return connectionString;
         }
 
         public Contact[] GetContacts()
         {
             var repository = GetRepository();
             return repository.Query();
+        }
+
+
+        public void AssignPicture(string contactUniqueId, string url)
+        {
+            var repository = GetRepository();
+            repository.UpdatePicture(contactUniqueId, url);
+
+            var connectionString = GetServiceBusConnectionString();
+
+            var client = QueueClient.CreateFromConnectionString(connectionString, CloudConfigurationManager.GetSetting("ImagesQueueName"));
+            var message = new BrokeredMessage(new ContactImageInfo {ImageUrl = url, UniqueId = contactUniqueId});
+            client.Send(message);
+        }
+
+
+        public void AssignThumbnail(string uniqueId, string uri)
+        {
+            var repository = GetRepository();
+            repository.UpdateThumbnail(uniqueId, uri);
         }
     }
 }

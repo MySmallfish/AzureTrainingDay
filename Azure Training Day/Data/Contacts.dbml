@@ -1,11 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AzureDemoContacts" Class="ContactsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQL2012;Initial Catalog=AzureDemoContacts;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="AzureDemoContactsConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="contacts" Class="ContactsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=tcp:yfglgwxnf7.database.windows.net,1433;Initial Catalog=contacts;Integrated Security=False;User ID=capp@yfglgwxnf7;Connect Timeout=30;Encrypt=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="contactsConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Contacts" Member="Contacts">
     <Type Name="Contact">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UniqueId" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Picture" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Thumbnail" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -32,5 +32,17 @@ namespace Data.Properties {
                 return ((string)(this["AzureDemoContactsConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:yfglgwxnf7.database.windows.net,1433;Initial Catalog=contacts;Int" +
+            "egrated Security=False;User ID=capp@yfglgwxnf7;Password=CA123456!;Connect Timeou" +
+            "t=30;Encrypt=True")]
+        public string contactsConnectionString {
+            get {
+                return ((string)(this["contactsConnectionString"]));
+            }
+        }
     }
 }

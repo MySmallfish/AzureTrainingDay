@@ -27,5 +27,16 @@ namespace Contracts
         {
             return Channel.Query();
         }
+
+        public void UpdatePicture(string uniqueId, string url)
+        {
+            Channel.UpdatePicture(uniqueId, url);
+        }
+
+
+        public void UpdateThumbnail(string uniqueId, string url)
+        {
+            Channel.UpdateThumbnail(uniqueId, url);
+        }
     }
 }
