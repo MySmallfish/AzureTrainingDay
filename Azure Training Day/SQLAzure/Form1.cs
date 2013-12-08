@@ -28,6 +28,10 @@ namespace SQLAzure
             Subscribe();
         }
 
+        public const string DebugTopic = "new-contacts-debug";
+        public const string Topic = "new-contacts";
+
+        private string m_topic = DebugTopic;
         private void Subscribe()
         {
 
@@ -117,12 +121,13 @@ namespace SQLAzure
         private void button3_Click(object sender, EventArgs e)
         {
             AddressText.Text = "http://127.0.0.1:81/ContactsManager.svc";
-
+            m_topic = DebugTopic;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             AddressText.Text = "http://e4d-azure-day.cloudapp.net/ContactsManager.svc";
+            m_topic = Topic;
         }
         
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
