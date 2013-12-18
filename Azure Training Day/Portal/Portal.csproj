@@ -241,6 +241,7 @@
     <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\e4ddemoportal %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\e4ddemoportal.pubxml" />
+    <None Include="Properties\PublishProfiles\newportale4d2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
